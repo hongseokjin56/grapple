@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>두더지 잡기</title>
+  <style>
+    .hole{
+      width: 100px; height: 100px; border-radius: 10px;
+      border: 1px solid rgb(200,200,200);
+      display: inline-block;
+      background-image: url(KakaoTalk_20250620_105016172.jpg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center 70px;
+    }
+    .mole{
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="hole"></div>
+  <div class="hole"></div>
+  <div class="hole"></div>
+  <p>점수 : <span id="score">0</span></p>
+
+
+  <script>
+    let scoreNum = 0;
+    const holes = document.querySelectorAll(".hole");
+
+    function randomMole() {
+      holes.forEach(hole => hole.classList.remove("mole"));
+      const i = Math.floor(Math.random() * holes.length);
+      holes[i].classList.add("mole");
+    }
+    holes.forEach(hole => {
+      hole.addEventListener("click", () => {
+        if(hole.classList.contains("mole")){
+          scoreNum++;
+          document.getElementById("score").textContent = scoreNum;
+          hole.classList.remove("mole");
+        }
+      });
+    });
+    setInterval(randomMole, 500);
+  </script>
+</body>
+</html>
